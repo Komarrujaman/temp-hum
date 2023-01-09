@@ -14,7 +14,7 @@ class Info extends Model
     {
         $client = new Client();
         //get Info device pada API 
-        $response = $client->get('http://iote.my.id/waterlevel/api/v1/device/info', [
+        $response = $client->get(env('APP_HOST_API') . '/device/info', [
             'headers' => [
                 'token' => session('token'),
                 'deviceName' => $deviceName

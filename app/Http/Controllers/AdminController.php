@@ -16,11 +16,11 @@ class AdminController extends Controller
      */
     public function index(Request $request)
     {
-            // The user is authenticated, so you can display the home page
-            $username = session('username');
-            $token = session('token');
-            $user = Admin::getAllUser();
-            return view('pages.admin.admin', ['user' => $user]);
+        // The user is authenticated, so you can display the home page
+        $username = session('username');
+        $token = session('token');
+        $user = Admin::getAllUser();
+        return view('pages.admin.admin', ['user' => $user]);
     }
 
     public function create(Request $request)
@@ -58,7 +58,7 @@ class AdminController extends Controller
     public function editUser(Request $request)
     {
         $client = new Client();
-        $response = $client->post('http://iote.my.id/waterlevel/api/v1/user/info/edit/', [
+        $response = $client->post(env('APP_HOST_API') . '/waterlevel/api/v1/user/info/edit/', [
             'headers' => [
                 'token' =>  session('token'),
                 'id' => $id = $request->input('id'),
@@ -82,7 +82,7 @@ class AdminController extends Controller
         $client = new Client();
         $user = Admin::getAllUser();
 
-        $response = $client->post('http://iote.my.id/waterlevel/api/v1/user/info/delete/', [
+        $response = $client->post(env('APP_HOST_API') . '/waterlevel/api/v1/user/info/delete/', [
             'headers' => [
                 'token' => $request->input('token'),
                 'id' => $request->input('id'),
@@ -97,7 +97,7 @@ class AdminController extends Controller
         $client = new Client();
         $user = Admin::getAllUser();
 
-        $response = $client->post('http://iote.my.id/waterlevel/api/v1/user/info/edit/password/', [
+        $response = $client->post(env('APP_HOST_API') . '/waterlevel/api/v1/user/info/edit/password/', [
             'headers' => [
                 'token' => $request->input('token'),
                 'id' => $request->input('id'),

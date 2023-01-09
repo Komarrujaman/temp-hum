@@ -11,7 +11,7 @@ class Admin extends Model
     public static function getAllUser()
     {
         $client = new Client();
-        $response = $client->get('http://iote.my.id/waterlevel/api/v1/user/list', [
+        $response = $client->get(env('APP_HOST_API') . '/user/list', [
             'headers' => [
                 'token' => session('token'),
             ]
@@ -23,7 +23,7 @@ class Admin extends Model
     public static function createUser($username, $roles, $password, $email, $phone, $name)
     {
         $client = new Client();
-        $response = $client->post('http://iote.my.id/waterlevel/api/v1/user/create/', [
+        $response = $client->post(env('APP_HOST_API') . '/user/create/', [
             'headers' => [
                 'token' => session('token')
             ],

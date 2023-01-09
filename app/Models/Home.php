@@ -11,7 +11,7 @@ class Home extends Model
     public function getData()
     {
         $client = new Client();
-        $response = $client->get('http://iote.my.id/waterlevel/api/v1/device/data/all', [
+        $response = $client->get(env('APP_HOST_API') . '/device/data/all', [
             'headers' => [
                 'token' => session('token'),
             ]

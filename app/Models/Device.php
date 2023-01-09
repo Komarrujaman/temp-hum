@@ -11,7 +11,7 @@ class Device extends Model
     public static function getDevices()
     {
         $client = new Client();
-        $response = $client->get('http://iote.my.id/waterlevel/api/v1/device/list', [
+        $response = $client->get(env('APP_HOST_API') . '/device/list', [
             'headers' => [
                 'token' => session('token'),
             ]

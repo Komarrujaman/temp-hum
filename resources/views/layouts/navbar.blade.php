@@ -8,7 +8,7 @@
     </button>
 
     <!-- Topbar Search -->
-    <h1 class="h3 mb-0 text-gray-800">Water Level Monitoring</h1>
+    <h1 class="h3 mb-0 text-gray-800">Temperature & Humidity Monitoring</h1>
 
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">

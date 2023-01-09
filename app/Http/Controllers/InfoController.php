@@ -39,7 +39,7 @@ class InfoController extends Controller
     public function edit(Request $request, $deviceName)
     {
         $client = new Client();
-        $response = $client->post('http://iote.my.id/waterlevel/api/v1/device/info/edit/', [
+        $response = $client->post(env('APP_HOST_API') . '/waterlevel/api/v1/device/info/edit/', [
             'headers' => [
                 'token' => session('token'),
                 'deviceName' => $deviceName
@@ -59,7 +59,7 @@ class InfoController extends Controller
     public function kalibrasi(Request $request, $deviceName)
     {
         $client = new Client();
-        $response = $client->post('http://iote.my.id/waterlevel/api/v1/device/info/calibration/edit/', [
+        $response = $client->post(env('APP_HOST_API') . '/waterlevel/api/v1/device/info/calibration/edit/', [
             'headers' => [
                 'token' => session('token'),
                 'deviceName' => $deviceName
