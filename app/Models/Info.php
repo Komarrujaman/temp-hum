@@ -38,7 +38,7 @@ class Info extends Model
     public static function getCalibration($deviceName)
     {
         $client = new Client();
-        $response = $client->get('http://iote.my.id/waterlevel/api/v1/device/info/calibration/', [
+        $response = $client->get(env('APP_HOST_API') . '/device/info/calibration/', [
             'headers' => [
                 'token' => session('token'),
                 'deviceName' => $deviceName
@@ -53,7 +53,7 @@ class Info extends Model
         $client = new Client();
 
         $response = $client->get(
-            'http://iote.my.id/waterlevel/api/v1/device/data/chart/',
+            env('APP_HOST_API') . '/device/data/chart/',
             [
                 'headers' => [
                     'token' => session('token'),

@@ -58,7 +58,7 @@ class AdminController extends Controller
     public function editUser(Request $request)
     {
         $client = new Client();
-        $response = $client->post(env('APP_HOST_API') . '/waterlevel/api/v1/user/info/edit/', [
+        $response = $client->post(env('APP_HOST_API') . '/user/info/edit/', [
             'headers' => [
                 'token' =>  session('token'),
                 'id' => $id = $request->input('id'),
@@ -82,7 +82,7 @@ class AdminController extends Controller
         $client = new Client();
         $user = Admin::getAllUser();
 
-        $response = $client->post(env('APP_HOST_API') . '/waterlevel/api/v1/user/info/delete/', [
+        $response = $client->post(env('APP_HOST_API') . '/user/info/delete/', [
             'headers' => [
                 'token' => $request->input('token'),
                 'id' => $request->input('id'),
@@ -97,7 +97,7 @@ class AdminController extends Controller
         $client = new Client();
         $user = Admin::getAllUser();
 
-        $response = $client->post(env('APP_HOST_API') . '/waterlevel/api/v1/user/info/edit/password/', [
+        $response = $client->post(env('APP_HOST_API') . '/user/info/edit/password/', [
             'headers' => [
                 'token' => $request->input('token'),
                 'id' => $request->input('id'),
