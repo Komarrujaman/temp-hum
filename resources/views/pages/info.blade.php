@@ -25,9 +25,7 @@
                         <td>:</td>
                         <td>{{$info->deviceInfo->sensorName}}</td>
 
-                        <th width="5%">DevEUI</th>
-                        <td>:</td>
-                        <td>{{$info->deviceInfo->devEUI}}</td>
+
 
                         <th>Serial Number</th>
                         <td>:</td>
@@ -52,9 +50,7 @@
                         <th width="5%">Koordinat</th>
                         <td>:</td>
                         <td>{{$info->deviceInfo->latitude}}<br>{{$info->deviceInfo->longitude}}</td>
-                        <th width="15%">Level Air</th>
-                        <td>:</td>
-                        <td>{{$info->deviceInfo->level}} cm</td>
+
                         <th width="15%">Alamat Sensor</th>
                         <td>:</td>
                         <td colspan="3">{{$info->deviceInfo->sensorAddress}}</td>
@@ -254,13 +250,6 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="total" class="col-sm-4 col-form-label">DevEUI</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" disabled readonly value="{{$info->deviceInfo->devEUI}}">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
                             <label for="total" class="col-sm-4 col-form-label">Serial Number</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" disabled readonly value="{{$info->deviceInfo->serialNumber}}">
@@ -323,33 +312,33 @@
                     <form class="form form-horizontal" action="{{route('kalibrasi', ['deviceName' => $deviceName])}}" method="post">
                         @csrf
                         <div class="form-group row">
-                            <label for="total" class="col-sm-4 col-form-label">Level </label>
+                            <label for="total" class="col-sm-4 col-form-label">Original Temperature </label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" disabled value="{{$cal->deviceCalibration->level}}">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="total" class="col-sm-4 col-form-label">Level Original</label>
+                            <label for="total" class="col-sm-4 col-form-label">Original Humidity</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" disabled value="{{$cal->deviceCalibration->levelOriginal}}">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="total" class="col-sm-4 col-form-label">Offset Level</label>
+                            <label for="total" class="col-sm-4 col-form-label">Original Pressure</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" name="offsetLevel" value="{{$cal->deviceCalibration->offsetLevel}}">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="total" class="col-sm-4 col-form-label">Surface Level</label>
+                            <label for="total" class="col-sm-4 col-form-label">Temperature</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" required name="baseLevel" value="{{$cal->deviceCalibration->baseLevel}}">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="total" class="col-sm-4 col-form-label">Level 1</label>
+                            <label for="total" class="col-sm-4 col-form-label">Humidity</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" required value="{{$cal->deviceCalibration->levelSave}}" name="levelSafe">
                             </div>
