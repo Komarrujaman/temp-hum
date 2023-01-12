@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>{{ $title ?? 'Water Level'}}</title>
+    <title>{{ $title ?? 'Temperature & Humidity'}}</title>
 
     <!-- Custom fonts for this template-->
     <!-- Custom fonts for this template-->

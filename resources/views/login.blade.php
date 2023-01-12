@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Water Level Login</title>
+    <title>Temperature & Humidity Login</title>
 
     <!-- Custom fonts for this template-->
     <link rel="shortcut icon" href="{{asset('assets/img/logo.png')}}" type="image/x-icon">
@@ -62,7 +62,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{asset ('assets/js/sb-admin-2.min.js')}}"></script>
-    
+
 
 </body>
 

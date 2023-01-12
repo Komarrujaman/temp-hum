@@ -24,12 +24,12 @@
                         <th width="12%">Nama Sensor</th>
                         <td>:</td>
                         <td>{{$info->deviceInfo->sensorName}}</td>
-
-
-
                         <th>Serial Number</th>
                         <td>:</td>
                         <td>{{$info->deviceInfo->serialNumber}}</td>
+                        <th>RSSI</th>
+                        <td>:</td>
+                        <td>{{$info->deviceInfo->rssi}}</td>
                     </tr>
 
                     <tr>
@@ -47,13 +47,27 @@
                     </tr>
 
                     <tr>
+                        <th width="10%">Temperature</th>
+                        <td>:</td>
+                        <td>{{$info->deviceInfo->temperature}}</td>
+
+                        <th width="11%">Humidity</th>
+                        <td>:</td>
+                        <td>{{$info->deviceInfo->humidity}}</td>
+
+                        <th>Pressure</th>
+                        <td>:</td>
+                        <td>{{$info->deviceInfo->pressure}}</td>
+                    </tr>
+
+                    <tr>
                         <th width="5%">Koordinat</th>
                         <td>:</td>
                         <td>{{$info->deviceInfo->latitude}}<br>{{$info->deviceInfo->longitude}}</td>
 
                         <th width="15%">Alamat Sensor</th>
                         <td>:</td>
-                        <td colspan="3">{{$info->deviceInfo->sensorAddress}}</td>
+                        <td colspan="4">{{$info->deviceInfo->sensorAddress}}</td>
                     </tr>
                 </table>
             </div>
@@ -65,7 +79,7 @@
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Riwayat Ketinggian Air</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Riwayat Sensor</h6>
                     <div class="dropdown no-arrow">
                         <form id="chart" class="form-group" data-url="{{route('chart', ['deviceName' => $info->deviceInfo->deviceName])}}" method="get">
                             <select class="form-select form-control" id="filter" name="filter" onchange="this.form.submit()">
@@ -87,6 +101,7 @@
             </div>
         </div>
 
+
         @section('js-custom')
         <script>
             $(document).ready(function() {
@@ -103,6 +118,7 @@
                 });
             });
         </script>
+
         <script>
             // Set new default font family and font color to mimic Bootstrap's default styling
             (Chart.defaults.global.defaultFontFamily = "Nunito"),
@@ -123,27 +139,73 @@
                         ?>
                     ],
                     datasets: [{
-                        label: "Tinggi Air",
-                        lineTension: 0.3,
-                        backgroundColor: "rgba(78, 115, 223, 0.05)",
-                        borderColor: "rgba(78, 115, 223, 1)",
-                        pointRadius: 3,
-                        pointBackgroundColor: "rgba(78, 115, 223, 1)",
-                        pointBorderColor: "rgba(78, 115, 223, 1)",
-                        pointHoverRadius: 3,
-                        pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-                        pointHoverBorderColor: "rgba(78, 115, 223, 1)",
-                        pointHitRadius: 10,
-                        pointBorderWidth: 2,
-                        data: [<?php
-                                // $data = array_reverse($data);
-                                foreach ($data as $datum) {
-                                    if (is_object($datum) && property_exists($datum, 'level')) {
-                                        echo $datum->level . ',';
+                            label: "Temperature",
+                            lineTension: 0.3,
+                            backgroundColor: "rgba(78, 115, 223, 0.05)",
+                            borderColor: "rgba(78, 115, 223, 1)",
+                            pointRadius: 2,
+                            pointBackgroundColor: "rgba(78, 115, 223, 1)",
+                            pointBorderColor: "rgba(78, 115, 223, 1)",
+                            pointHoverRadius: 3,
+                            pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+                            pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+                            pointHitRadius: 10,
+                            pointBorderWidth: 2,
+                            data: [<?php
+                                    // $data = array_reverse($data);
+                                    foreach ($data as $datum) {
+                                        if (is_object($datum) && property_exists($datum, 'temperature')) {
+                                            echo $datum->temperature . ',';
+                                        }
                                     }
-                                }
-                                ?>],
-                    }, ],
+                                    ?>],
+                        },
+                        {
+                            label: "Humidity",
+                            lineTension: 0.3,
+                            backgroundColor: "rgba(0, 255, 0, 0.05)",
+                            borderColor: "rgba(0, 255, 0, 1)",
+                            pointRadius: 2,
+                            pointBackgroundColor: "rgba(0, 255, 0, 1)",
+                            pointBorderColor: "rgba(0, 255, 0, 1)",
+                            pointHoverRadius: 3,
+                            pointHoverBackgroundColor: "rgba(0, 255, 0, 1)",
+                            pointHoverBorderColor: "rgba(0, 255, 0, 1)",
+                            pointHitRadius: 10,
+                            pointBorderWidth: 2,
+                            data: [<?php
+                                    // $data = array_reverse($data);
+                                    foreach ($data as $datum) {
+                                        if (is_object($datum) && property_exists($datum, 'humidity')) {
+                                            echo $datum->humidity . ',';
+                                        }
+                                    }
+                                    ?>],
+                        },
+
+                        {
+                            label: "Pressure",
+                            lineTension: 0.3,
+                            backgroundColor: "rgba(000, 000, 000, 0.05)",
+                            borderColor: "rgba(255, 51, 51, 1)",
+                            pointRadius: 2,
+                            pointBackgroundColor: "rgba(255, 51, 51, 1)",
+                            pointBorderColor: "rgba(255, 51, 51, 1)",
+                            pointHoverRadius: 3,
+                            pointHoverBackgroundColor: "rgba(255, 51, 51, 1)",
+                            pointHoverBorderColor: "rgba(255, 51, 51,, 1)",
+                            pointHitRadius: 10,
+                            pointBorderWidth: 2,
+                            data: [<?php
+                                    // $data = array_reverse($data);
+                                    foreach ($data as $datum) {
+                                        if (is_object($datum) && property_exists($datum, 'pressure')) {
+                                            echo $datum->pressure . ',';
+                                        }
+                                    }
+                                    ?>],
+                        },
+                    ],
                 },
                 options: {
                     maintainAspectRatio: false,
@@ -206,6 +268,7 @@
 
 
         @endsection
+
 
         <!-- Koordinat-->
         <div class="col-xl-4 col-lg-5">
@@ -314,47 +377,103 @@
                         <div class="form-group row">
                             <label for="total" class="col-sm-4 col-form-label">Original Temperature </label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" disabled value="{{$cal->deviceCalibration->level}}">
+                                <input type="text" class="form-control" disabled value="{{$cal->deviceCalibration->temperatureOri}}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="total" class="col-sm-4 col-form-label">Original Humidity</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" disabled value="{{$cal->deviceCalibration->levelOriginal}}">
+                                <input type="text" class="form-control" disabled value="{{$cal->deviceCalibration->humidityOri}}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="total" class="col-sm-4 col-form-label">Original Pressure</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" name="offsetLevel" value="{{$cal->deviceCalibration->offsetLevel}}">
+                                <input type="text" class="form-control" disabled value="{{$cal->deviceCalibration->pressureOri}}">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="total" class="col-sm-4 col-form-label">Temperature</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" required name="baseLevel" value="{{$cal->deviceCalibration->baseLevel}}">
+                                <input type="text" class="form-control" disabled value="{{$cal->deviceCalibration->temperature}}">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="total" class="col-sm-4 col-form-label">Humidity</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" required value="{{$cal->deviceCalibration->levelSave}}" name="levelSafe">
+                                <input type="text" class="form-control" value="{{$cal->deviceCalibration->humidity}}" disabled>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="total" class="col-sm-4 col-form-label">Level 2</label>
+                            <label for="total" class="col-sm-4 col-form-label">Pressure</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" required value="{{$cal->deviceCalibration->levelStanby}}" name="levelStanby">
+                                <input type="text" class="form-control" value="{{$cal->deviceCalibration->pressure}}" disabled>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="total" class="col-sm-4 col-form-label">Level 3</label>
+                            <label for="total" class="col-sm-4 col-form-label">Offset Temp</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" required value="{{$cal->deviceCalibration->levelDanger}}" name="levelDanger">
+                                <input type="text" class="form-control" required value="{{$cal->deviceCalibration->offsetTemp}}" name="offsetTemp">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="total" class="col-sm-4 col-form-label">Offset Hum</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" required value="{{$cal->deviceCalibration->offsetHum}}" name="offsetHum">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="total" class="col-sm-4 col-form-label">Offset Press</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" required value="{{$cal->deviceCalibration->offsetPress}}" name="offsetPress">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="total" class="col-sm-4 col-form-label">Trigger Up Temp</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" required value="{{$cal->deviceCalibration->triggerUpTemp}}" name="triggerUpTemp">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="total" class="col-sm-4 col-form-label">Trigger Down Temp</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" required value="{{$cal->deviceCalibration->triggerDownTemp}}" name="triggerDownTemp">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="total" class="col-sm-4 col-form-label">Trigger Up Hum</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" required value="{{$cal->deviceCalibration->triggerUpHum}}" name="triggerUpHum">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="total" class="col-sm-4 col-form-label">Trigger Down Hum</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" required value="{{$cal->deviceCalibration->triggerDownHum}}" name="triggerDownHum">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="total" class="col-sm-4 col-form-label">Trigger Up Press</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" required value="{{$cal->deviceCalibration->triggerUpPress}}" name="triggerUpPress">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="total" class="col-sm-4 col-form-label">Trigger Down Press</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" required value="{{$cal->deviceCalibration->triggerDownPress}}" name="triggerDownPress">
                             </div>
                         </div>
 

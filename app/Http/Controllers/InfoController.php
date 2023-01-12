@@ -65,11 +65,15 @@ class InfoController extends Controller
                 'deviceName' => $deviceName
             ],
             'form_params' => [
-                'offsetLevel' => $request->input('offsetLevel'),
-                'baseLevel' => $request->input('baseLevel'),
-                'levelSafe' => $request->input('levelSafe'),
-                'levelStanby' => $request->input('levelStanby'),
-                'levelDanger' => $request->input('levelDanger')
+                'offsetTemp' => $request->input('offsetTemp'),
+                'offsetHum' => $request->input('offsetHum'),
+                'offsetPress' => $request->input('offsetPress'),
+                'triggerDownTemp' => $request->input('triggerDownTemp'),
+                'triggerUpTemp' => $request->input('triggerUpTemp'),
+                'triggerDownHum' => $request->input('triggerDownHum'),
+                'triggerUpHum' => $request->input('triggerUpHum'),
+                'triggerDownPress' => $request->input('triggerDownPress'),
+                'triggerUpPress' => $request->input('triggerUpPress')
             ]
         ]);
 
