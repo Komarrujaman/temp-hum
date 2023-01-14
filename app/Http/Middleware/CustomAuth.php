@@ -30,7 +30,7 @@ class CustomAuth
             // Check if the authentication was successful
             if ($response->status == 200) {
                 // Save the token and username in the session
-                session(['token' => $response->token, 'username' => $username]);
+                session(['token' => $response->token, 'username' => $username, 'roles' => $response->roles]);
 
                 // Continue with the request
                 return $next($request);

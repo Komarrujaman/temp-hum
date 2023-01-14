@@ -43,7 +43,7 @@ class LoginController extends Controller
         // Check if the authentication was successful
         if ($response->status == 200) {
             // Save the token and username in the session
-            session(['token' => $response->token, 'username' => $username]);
+            session(['roles' => $response->roles, 'token' => $response->token, 'username' => $username]);
 
             // Redirect to the home page
             toast('Login Berhasil', 'success')->autoClose(1000);
@@ -62,6 +62,6 @@ class LoginController extends Controller
         $response = response()->view('login')->header('cache-control', 'no-cache');
 
         // Return the response
-        return redirect('/')->with('success','Berhasil Log-out')->header('cache-control', 'no-cache');
+        return redirect('/')->with('success', 'Berhasil Log-out')->header('cache-control', 'no-cache');
     }
 }
