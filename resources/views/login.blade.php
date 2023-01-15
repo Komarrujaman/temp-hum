@@ -21,7 +21,7 @@
 </head>
 
 <body class="bg-gradient-primary">
-    <div class="container">
+    <div class="container login-container">
         <!-- Outer Row -->
         <div class="row justify-content-center">
             <div class="card o-hidden border-0 shadow-lg my-5" style="margin-top: 50%;">
