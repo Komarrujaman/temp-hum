@@ -15,19 +15,19 @@
         $lastUpdateTime->setTimeZone(new DateTimeZone('Asia/Jakarta'));
         $diff = $currentTime->diff($lastUpdateTime);
         ?>
-        <div class="col-xl-3 col-md-6 mb-2">
+        <div class="col-lg-7 col-xl-3 col-md-6 mb-2">
             <div class="card shadow py-1">
                 <div class="card-body">
                     <a href="{{url ('/info/'.$item->deviceName)}}" class="stretched-link"></a>
                     <div class="row no-gutters align-items-center" id="data-device">
-                        <div class="col mr-2">
+                        <div class="mr-2 col-lg-12">
                             <div class="row">
-                                <div class="col-sm-12">
+                                <div class="col ml-1">
                                     <div class="h5 font-weight-bold text-gray-800 text-uppercase mb-3">{{$item->sensorName}}</div>
                                 </div>
                             </div>
                             <div class="row mb-2">
-                                <div class="h6 col-6 mb-0 font-weight-bold text-gray-800 mb-2"><i class="fas fa-solid fa-temperature-three-quarters fa-2x text-primary"></i> {{$item->temperature}} °C</div>
+                                <div class="h6 col-6 mb-0 font-weight-bold text-gray-800 mb-2"><i class="fas fa-solid fa-temperature-three-quarters fa-2x text-primary"></i> {{$item->temperature}}°C</div>
                                 <div class="h6 mb-0 col-6 font-weight-bold text-gray-800 mb-2"><i class="fas fa-solid fa-droplet fa-2x  text-primary"></i> {{$item->humidity}}%</div>
                             </div>
                             <div class="row">
