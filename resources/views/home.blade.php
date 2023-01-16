@@ -16,10 +16,10 @@
         $diff = $currentTime->diff($lastUpdateTime);
         ?>
         <div class="col-xl-3 col-md-6 mb-2">
-            <div class="card shadow py-1" id="listDevice">
+            <div class="card shadow py-1">
                 <div class="card-body">
                     <a href="{{url ('/info/'.$item->deviceName)}}" class="stretched-link"></a>
-                    <div class="row no-gutters align-items-center">
+                    <div class="row no-gutters align-items-center" id="data-device">
                         <div class="col mr-2">
                             <div class="row">
                                 <div class="col-sm-12">
@@ -41,6 +41,15 @@
             </div>
         </div>
     </div>
+
+    @section('js-custom')
+    <script>
+        setInterval(function() {
+            $('#data-device').html('Loading...');
+            $('#data-device').load(location.href + ' #data-device');
+        }, 30000);
+    </script>
+    @endsection
     @endforeach
 
     @endsection
