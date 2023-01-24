@@ -326,7 +326,7 @@
                 data: {
                     labels: [
                         <?php
-                        $data = array_reverse($data);
+                        // $data = array_reverse($data);
                         foreach ($data as $datum) {
                             echo "'" . $datum->time . "', ";
                         }

@@ -33,6 +33,8 @@
             <span>User Management</span></a>
     </li>
 
+    {{session('roles')}}
+
     <hr class="sidebar-divider mb-3">
 
     <!-- Sidebar Toggler (Sidebar) -->
