@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use GuzzleHttp\Client;
 use App\Models\Home;
-use GuzzleHttp\Psr7\Request;
+use Illuminate\Support\Facades\Storage;
 
 class Info extends Model
 {
@@ -79,7 +79,8 @@ class Info extends Model
                 ]
             ]
         );
-
-        return $response->getBody()->getContents();
+        $csv = $response->getBody()->getContents();
+        Storage::put('file.csv', $csv);
+        return Storage::url('file.csv');
     }
 }

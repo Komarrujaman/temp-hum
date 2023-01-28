@@ -27,13 +27,12 @@
             <span>Device</span></a>
     </li>
 
-    <li @if(session('roles')==2 || session('roles')==3) {{'hidden'}} @endif class="nav-item {{ (request()->is('admin')) ? ' active' : '' }}">
+    <li class="nav-item {{ (request()->is('admin')) ? ' active' : '' }}">
         <a class="nav-link" href="{{url('admin')}}">
             <i class="fas fa-solid fa-user"></i>
             <span>User Management</span></a>
     </li>
 
-    {{session('roles')}}
 
     <hr class="sidebar-divider mb-3">
 

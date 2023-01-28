@@ -6,6 +6,7 @@ use App\Models\Info;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Storage;
 
 class InfoController extends Controller
 {
@@ -93,6 +94,7 @@ class InfoController extends Controller
     public function csv($deviceName)
     {
         $csv = Info::getCsv($deviceName);
-        dd($csv);
+        return response()->download(Storage::path('file.csv'), 'dataLog-' . $deviceName . '.csv');
+        return redirect()->route('info', ['deviceName' => $deviceName]);
     }
 }
