@@ -262,7 +262,7 @@
                                 drawBorder: true,
                             },
                             ticks: {
-                                maxTicksLimit: 5,
+                                maxTicksLimit: 7,
                             },
                         }, ],
                         yAxes: [{
@@ -382,7 +382,7 @@
                                 drawBorder: true,
                             },
                             ticks: {
-                                maxTicksLimit: 5,
+                                maxTicksLimit: 7,
                             },
                         }, ],
                         yAxes: [{
@@ -452,7 +452,6 @@
                 data: {
                     labels: [
                         <?php
-                        $data = array_reverse($data);
                         foreach ($data as $datum) {
                             echo "'" . $datum->time . "', ";
                         }
@@ -472,7 +471,7 @@
                         pointHitRadius: 10,
                         pointBorderWidth: 2,
                         data: [<?php
-                                // $data = array_reverse($data);
+
                                 foreach ($data as $datum) {
                                     if (is_object($datum) && property_exists($datum, 'pressure')) {
                                         echo $datum->pressure . ',';
@@ -501,7 +500,7 @@
                                 drawBorder: true,
                             },
                             ticks: {
-                                maxTicksLimit: 5,
+                                maxTicksLimit: 7,
                             },
                         }, ],
                         yAxes: [{
