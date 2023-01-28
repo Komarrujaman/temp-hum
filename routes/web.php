@@ -35,6 +35,9 @@ Route::get('chart/{deviceName}', [InfoController::class, 'chart'])->name('chart'
 Route::post('edit/{deviceName}', [InfoController::class, 'edit'])->name('edit')->middleware('authToken');
 Route::post('kalibrasi/{deviceName}', [InfoController::class, 'kalibrasi'])->name('kalibrasi')->middleware('authToken');
 
+// Download CSV
+Route::get('csv/{deviceName}', [InfoController::class, 'csv'])->name('csv')->middleware('authToken');
+
 // Device List
 Route::get('device', [DeviceController::class, 'index'])->name('device')->middleware('authToken');
 Route::get('infolist/{deviceNameList}', [InfoController::class, 'info'])->name('infolist')->middleware('authToken');

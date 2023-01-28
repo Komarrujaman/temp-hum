@@ -29,7 +29,8 @@ class InfoController extends Controller
 
             $api = Info::getChart($deviceName, $filter);
             $data = $api->data;
-            return view('pages.info', ['info' => $info, 'cal' => $calibration, 'deviceName' => $deviceName, 'data' => $data, 'api' => $api]);
+            $csv = Info::getCsv($deviceName);
+            return view('pages.info', ['info' => $info, 'cal' => $calibration, 'deviceName' => $deviceName, 'data' => $data, 'api' => $api, 'csv' => $csv]);
         } else {
             // The user is not authenticated, so redirect to the login page
             return redirect()->route('login');
@@ -87,5 +88,11 @@ class InfoController extends Controller
 
         $api = Info::getChart($deviceName, $filter);
         return redirect()->route('info', ['deviceName' => $deviceName]);
+    }
+
+    public function csv($deviceName)
+    {
+        $csv = Info::getCsv($deviceName);
+        dd($csv);
     }
 }

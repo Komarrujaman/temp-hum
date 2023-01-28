@@ -8,6 +8,7 @@
         <h1 class="h1 mb-0 text-gray-800">{{$info->deviceInfo->sensorName}}</h1>
         <div class="row">
             <div>
+                <a href="{{route('csv', ['deviceName' => $info->deviceInfo->deviceName])}}" class="d-none d-sm-inline-block align-content-end btn btn-sm font-weight-bold text-white btn-success shadow-sm"><i class="fas fa-solid fa-file-csv"></i> Download CSV</a>
                 <a href="#" class="d-none d-sm-inline-block align-content-end btn btn-sm font-weight-bold text-white btn-info shadow-sm" data-toggle="modal" data-target="#kalibrasi"><i class="fas fa-regular fa-magnet"></i> Kalibrasi Sensor</a>
                 <a href="#" class="d-none d-sm-inline-block btn btn-sm font-weight-bold text-white btn-primary shadow-sm" data-toggle="modal" data-target="#edit"><i class="fas fa-solid fa-edit"></i> Edit Info Sensor</a>
             </div>
@@ -116,7 +117,7 @@
                                 <option value="1" {{ $api->filter == 1 ? 'selected' : '' }}>1 Jam Terakhir</option>
                                 <option value="2" {{ $api->filter == 2 ? 'selected' : '' }}>24 Jam Terakhir</option>
                                 <option value="3" {{ $api->filter == 3 ? 'selected' : '' }}>Seminggu Terakhir</option>
-                                <option value="3" {{ $api->filter == 4 ? 'selected' : '' }}>Sebulan Terakhir</option>
+                                <option value="4" {{ $api->filter == 4 ? 'selected' : '' }}>Sebulan Terakhir</option>
                             </select>
                         </form>
                     </div>
@@ -143,7 +144,7 @@
                                 <option value="1" {{ $api->filter == 1 ? 'selected' : '' }}>1 Jam Terakhir</option>
                                 <option value="2" {{ $api->filter == 2 ? 'selected' : '' }}>24 Jam Terakhir</option>
                                 <option value="3" {{ $api->filter == 3 ? 'selected' : '' }}>Seminggu Terakhir</option>
-                                <option value="3" {{ $api->filter == 4 ? 'selected' : '' }}>Sebulan Terakhir</option>
+                                <option value="4" {{ $api->filter == 4 ? 'selected' : '' }}>Sebulan Terakhir</option>
                             </select>
                         </form>
                     </div>

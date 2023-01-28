@@ -65,4 +65,21 @@ class Info extends Model
 
         return json_decode($response->getBody());
     }
+
+    public static function getCsv($deviceName)
+    {
+        $client = new Client();
+
+        $response = $client->get(
+            env('APP_HOST_API') . '/device/data/export/csv/',
+            [
+                'headers' => [
+                    'token' => session('token'),
+                    'deviceName' => $deviceName,
+                ]
+            ]
+        );
+
+        return $response->getBody()->getContents();
+    }
 }
