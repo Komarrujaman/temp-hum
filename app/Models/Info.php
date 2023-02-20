@@ -66,21 +66,21 @@ class Info extends Model
         return json_decode($response->getBody());
     }
 
-    public static function getCsv($deviceName)
-    {
-        $client = new Client();
+    // public static function getCsv($deviceName)
+    // {
+    //     $client = new Client();
 
-        $response = $client->get(
-            env('APP_HOST_API') . '/device/data/export/csv/',
-            [
-                'headers' => [
-                    'token' => session('token'),
-                    'deviceName' => $deviceName,
-                ]
-            ]
-        );
-        $csv = $response->getBody()->getContents();
-        Storage::put('file.csv', $csv);
-        return Storage::url('file.csv');
-    }
+    //     $response = $client->get(
+    //         env('APP_HOST_API') . '/device/data/export/csv/',
+    //         [
+    //             'headers' => [
+    //                 'token' => session('token'),
+    //                 'deviceName' => $deviceName,
+    //             ]
+    //         ]
+    //     );
+    //     $csv = $response->getBody()->getContents();
+    //     Storage::put('file.csv', $csv);
+    //     return Storage::url('file.csv');
+    // }
 }

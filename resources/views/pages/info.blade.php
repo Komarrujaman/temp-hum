@@ -5,10 +5,10 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h1 mb-0 text-gray-800">{{$info->deviceInfo->sensorName}}</h1>
+        <h1 class="mb-0 text-gray-800">{{$info->deviceInfo->sensorName}}</h1>
         <div class="row">
             <div>
-                <a class="d-none d-sm-inline-block align-content-end btn btn-sm font-weight-bold text-white btn-success shadow-sm"><i class="fas fa-solid fa-file-csv"></i> <span id="export" data-href="{{route('csv', ['deviceName' => $info->deviceInfo->deviceName])}}" onclick="exportTasks (event.target);">Download CSV</span> </a>
+                <!-- <a class="d-none d-sm-inline-block align-content-end btn btn-sm font-weight-bold text-white btn-success shadow-sm"><i class="fas fa-solid fa-file-csv"></i> <span id="export" data-href="{{route('csv', ['deviceName' => $info->deviceInfo->deviceName])}}" onclick="exportTasks (event.target);">Download CSV</span> </a> -->
                 <a href="#" class="d-none d-sm-inline-block align-content-end btn btn-sm font-weight-bold text-white btn-info shadow-sm" data-toggle="modal" data-target="#kalibrasi"><i class="fas fa-regular fa-magnet"></i> Kalibrasi Sensor</a>
                 <a href="#" class="d-none d-sm-inline-block btn btn-sm font-weight-bold text-white btn-primary shadow-sm" data-toggle="modal" data-target="#edit"><i class="fas fa-solid fa-edit"></i> Edit Info Sensor</a>
             </div>

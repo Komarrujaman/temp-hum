@@ -30,8 +30,8 @@ class InfoController extends Controller
 
             $api = Info::getChart($deviceName, $filter);
             $data = $api->data;
-            $csv = Info::getCsv($deviceName);
-            return view('pages.info', ['info' => $info, 'cal' => $calibration, 'deviceName' => $deviceName, 'data' => $data, 'api' => $api, 'csv' => $csv]);
+            // $csv = Info::getCsv($deviceName);
+            return view('pages.info', ['info' => $info, 'cal' => $calibration, 'deviceName' => $deviceName, 'data' => $data, 'api' => $api,]);
         } else {
             // The user is not authenticated, so redirect to the login page
             return redirect()->route('login');
@@ -91,10 +91,10 @@ class InfoController extends Controller
         return redirect()->route('info', ['deviceName' => $deviceName]);
     }
 
-    public function csv($deviceName)
-    {
-        $csv = Info::getCsv($deviceName);
-        return response()->download(Storage::path('file.csv'), 'dataLog-' . $deviceName . '.csv');
-        return redirect()->route('info', ['deviceName' => $deviceName]);
-    }
+    // public function csv($deviceName)
+    // {
+    //     $csv = Info::getCsv($deviceName);
+    //     return response()->download(Storage::path('file.csv'), 'dataLog-' . $deviceName . '.csv');
+    //     return redirect()->route('info', ['deviceName' => $deviceName]);
+    // }
 }
