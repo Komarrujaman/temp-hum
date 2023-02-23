@@ -66,21 +66,32 @@ class Info extends Model
         return json_decode($response->getBody());
     }
 
-    // public static function getCsv($deviceName)
-    // {
-    //     $client = new Client();
+    public static function getCsv($deviceName, $date)
+    {
+        if (Storage::exists('file.csv')) {
+            return Storage::url('file.csv');
+        }
 
-    //     $response = $client->get(
-    //         env('APP_HOST_API') . '/device/data/export/csv/',
-    //         [
-    //             'headers' => [
-    //                 'token' => session('token'),
-    //                 'deviceName' => $deviceName,
-    //             ]
-    //         ]
-    //     );
-    //     $csv = $response->getBody()->getContents();
-    //     Storage::put('file.csv', $csv);
-    //     return Storage::url('file.csv');
-    // }
+        $client = new Client();
+
+        $response = $client->post(
+            env('APP_HOST_API') . '/device/data/export/csv/',
+            [
+                'headers' => [
+                    'token' => session('token'),
+                    'deviceName' => $deviceName,
+                    'date' => $date
+                ]
+            ]
+        );
+
+        if ($response->getStatusCode() !== 200) {
+            // Handle error scenario here
+            return null;
+        }
+
+        $csv = $response->getBody()->getContents();
+        Storage::put('file.csv', $csv);
+        return Storage::url('file.csv');
+    }
 }

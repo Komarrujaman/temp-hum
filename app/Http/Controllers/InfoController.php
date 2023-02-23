@@ -91,10 +91,11 @@ class InfoController extends Controller
         return redirect()->route('info', ['deviceName' => $deviceName]);
     }
 
-    // public function csv($deviceName)
-    // {
-    //     $csv = Info::getCsv($deviceName);
-    //     return response()->download(Storage::path('file.csv'), 'dataLog-' . $deviceName . '.csv');
-    //     return redirect()->route('info', ['deviceName' => $deviceName]);
-    // }
+    public function csv(Request $request, $deviceName)
+    {
+        $date = $request->input('date');
+        $csvUrl = Info::getCsv($deviceName, $date);
+        return response()->download(Storage::path('file.csv'), 'dataLog-' . $deviceName . '.csv')->deleteFileAfterSend(true);
+        return redirect()->route('info', ['deviceName' => $deviceName]);
+    }
 }

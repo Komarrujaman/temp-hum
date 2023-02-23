@@ -8,9 +8,13 @@
         <h1 class="mb-0 text-gray-800">{{$info->deviceInfo->sensorName}}</h1>
         <div class="row">
             <div>
-                <!-- <a class="d-none d-sm-inline-block align-content-end btn btn-sm font-weight-bold text-white btn-success shadow-sm"><i class="fas fa-solid fa-file-csv"></i> <span id="export" data-href="{{route('csv', ['deviceName' => $info->deviceInfo->deviceName])}}" onclick="exportTasks (event.target);">Download CSV</span> </a> -->
                 <a href="#" class="d-none d-sm-inline-block align-content-end btn btn-sm font-weight-bold text-white btn-info shadow-sm" data-toggle="modal" data-target="#kalibrasi"><i class="fas fa-regular fa-magnet"></i> Kalibrasi Sensor</a>
                 <a href="#" class="d-none d-sm-inline-block btn btn-sm font-weight-bold text-white btn-primary shadow-sm" data-toggle="modal" data-target="#edit"><i class="fas fa-solid fa-edit"></i> Edit Info Sensor</a>
+                <form class=" d-none d-sm-inline-block align-content" action="{{route('csv', ['deviceName' => $info->deviceInfo->deviceName])}}" method="post">
+                    @csrf
+                    <input type="date" class="form-control" name="date" id="date">
+                    <button type="submit" class=" d-none d-sm-inline-block align-content-end btn btn-sm font-weight-bold text-white btn-success shadow-sm"><i class="fas fa-solid fa-file-csv"></i> <span>Download CSV</span></button>
+                </form>
             </div>
         </div>
 
@@ -177,11 +181,11 @@
 
         @section('js-custom')
         <script>
-            function exportTasks(_this) {
-                let _url = $(_this).data('href');
-                window.location.href = _url;
-            }
+            // Set the placeholder of the date input to today's date
+            const today = new Date().toISOString().substr(0, 10);
+            document.querySelector("#date").setAttribute("placeholder", today);
         </script>
+
 
         <!-- TEMPERATURE -->
         <script>

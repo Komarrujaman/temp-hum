@@ -36,7 +36,7 @@ Route::post('edit/{deviceName}', [InfoController::class, 'edit'])->name('edit')-
 Route::post('kalibrasi/{deviceName}', [InfoController::class, 'kalibrasi'])->name('kalibrasi')->middleware('authToken');
 
 // Download CSV
-Route::get('csv/{deviceName}', [InfoController::class, 'csv'])->name('csv')->middleware('authToken');
+Route::post('csv/{deviceName}', [InfoController::class, 'csv'])->name('csv')->middleware('authToken');
 
 // Device List
 Route::get('device', [DeviceController::class, 'index'])->name('device')->middleware('authToken');
