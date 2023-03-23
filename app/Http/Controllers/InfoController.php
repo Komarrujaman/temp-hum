@@ -91,11 +91,59 @@ class InfoController extends Controller
         return redirect()->route('info', ['deviceName' => $deviceName]);
     }
 
+    // public function csv(Request $request, $deviceName)
+    // {
+    //     $date = $request->input('date');
+    //     if (Storage::exists('file.csv')) {
+    //         return Storage::url('file.csv');
+    //     }
+
+    //     $client = new Client();
+
+    //     $response = $client->post(
+    //         env('APP_HOST_API') . '/device/data/export/csv/',
+    //         [
+    //             'headers' => [
+    //                 'token' => session('token'),
+    //             ],
+    //             'form-params' => [
+    //                 'deviceName' => $deviceName,
+    //                 'date' => $date,
+    //             ]
+    //         ]
+    //     );
+
+    //     if ($response->getStatusCode() !== 200) {
+    //         // Handle error scenario here
+    //         return null;
+    //     }
+
+    //     $csv = $response->getBody()->getContents();
+    //     Storage::put('file.csv', $csv);
+    //     return Storage::url('file.csv');
+    //     return response()->download(Storage::path('file.csv'), 'dataLog-' . $deviceName . '.csv')->deleteFileAfterSend(true);
+    //     return redirect()->route('info', ['deviceName' => $deviceName]);
+    // }
+
     public function csv(Request $request, $deviceName)
     {
         $date = $request->input('date');
-        $csvUrl = Info::getCsv($deviceName, $date);
-        return response()->download(Storage::path('file.csv'), 'dataLog-' . $deviceName . '.csv')->deleteFileAfterSend(true);
-        return redirect()->route('info', ['deviceName' => $deviceName]);
+        $client = new Client();
+        $response = $client->get(
+            env('APP_HOST_API') . '/device/data/export/csv/',
+            [
+                'headers' => [
+                    'token' => session('token'),
+                    'deviceName' => $deviceName,
+                    'date' => $date,
+                ]
+            ]
+        );
+        $filename = 'dataLog-' . $deviceName . '-' . $date . '.csv';
+        $report = $response->getBody()->getContents();
+
+        Storage::put($filename, $report);
+
+        return response()->download(storage_path('app/' . $filename));
     }
 }

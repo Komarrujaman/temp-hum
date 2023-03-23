@@ -180,11 +180,6 @@
 
 
         @section('js-custom')
-        <script>
-            // Set the placeholder of the date input to today's date
-            const today = new Date().toISOString().substr(0, 10);
-            document.querySelector("#date").setAttribute("placeholder", today);
-        </script>
 
 
         <!-- TEMPERATURE -->
