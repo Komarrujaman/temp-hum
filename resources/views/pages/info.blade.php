@@ -10,15 +10,17 @@
             <div>
                 <a href="#" class="d-none d-sm-inline-block align-content-end btn btn-sm font-weight-bold text-white btn-info shadow-sm" data-toggle="modal" data-target="#kalibrasi"><i class="fas fa-regular fa-magnet"></i> Kalibrasi Sensor</a>
                 <a href="#" class="d-none d-sm-inline-block btn btn-sm font-weight-bold text-white btn-primary shadow-sm" data-toggle="modal" data-target="#edit"><i class="fas fa-solid fa-edit"></i> Edit Info Sensor</a>
-                <form class=" d-none d-sm-inline-block align-content" action="{{route('csv', ['deviceName' => $info->deviceInfo->deviceName])}}" method="post">
-                    @csrf
-                    <input type="date" class="form-control" name="date" id="date">
-                    <button type="submit" class=" d-none d-sm-inline-block align-content-end btn btn-sm font-weight-bold text-white btn-success shadow-sm"><i class="fas fa-solid fa-file-csv"></i> <span>Download CSV</span></button>
-                </form>
             </div>
         </div>
 
     </div>
+    <form class=" d-none d-sm-inline-block align-content-end" action="{{route('csv', ['deviceName' => $info->deviceInfo->deviceName])}}" method="post">
+        @csrf
+        <div class="input-group mb-3">
+            <button class="d-none d-sm-inline-block align-content-end btn btn-sm btn btn-success" type="submit" id="button-addon1"><i class="fas fa-solid fa-file-csv"></i> Download CSV</button>
+            <input type="date" name="date" class="form-control" value="{{ date('Y-m-d') }}" aria-describedby="button-addon1" max="{{ date('Y-m-d') }}" min="{{ date('Y-m-d', strtotime('-1 month')) }}">
+        </div>
+    </form>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
