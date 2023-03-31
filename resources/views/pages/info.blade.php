@@ -18,7 +18,7 @@
         @csrf
         <div class="input-group mb-3">
             <button class="d-none d-sm-inline-block align-content-end btn btn-sm btn btn-success" type="submit" id="button-addon1"><i class="fas fa-solid fa-file-csv"></i> Download CSV</button>
-            <input type="date" name="date" class="form-control" value="{{ date('Y-m-d') }}" aria-describedby="button-addon1" max="{{ date('Y-m-d') }}" min="{{ date('Y-m-d', strtotime('-1 month')) }}">
+            <input type="date" name="date" class="form-control" value="{{ date('Y-m-d') }}" aria-describedby="button-addon1">
         </div>
     </form>
 
